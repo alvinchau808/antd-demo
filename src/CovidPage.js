@@ -9,7 +9,28 @@ const CovidPage = () => {
     const asyncFetch = () => {
       fetch('https://covid19.mathdro.id/api/countries/australia/confirmed')
         .then(response => response.json())
-        .then(json => setData(json))
+        .then(json => {
+          let data = [];
+          for (let state of json){
+            data.push({
+              'provinceState': state.provinceState,
+              'type': 'confirmed',
+              'cases': state.confirmed,
+            });
+            data.push({
+              'provinceState': state.provinceState,
+              'type': 'active',
+              'cases': state.active,
+            });
+            data.push({
+              'provinceState': state.provinceState,
+              'type': 'deaths',
+              'cases': state.deaths,
+            });
+          };
+          console.log(data);
+          setData(data);
+        })
         .catch(error => {
           console.log('fetch data failed', error);
         });
@@ -23,16 +44,15 @@ const CovidPage = () => {
       forceFit: true,
       data,
       xField: 'provinceState',
-      yField: 'confirmed',
-      
+      yField: 'cases',
+      groupField: 'type',
       yAxis: {
         min: 0,
       },
       label: {
         visible: true,
       },
-      groupField: 'confirmed',
-      color: ['#1ca9e6', '#f88c24'],
+      color: ['orange', 'red', 'black'],
     };
     return <GroupedColumn {...config} />;
   };
