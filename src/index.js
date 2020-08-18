@@ -1,17 +1,37 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import 'antd/dist/antd.css';
 import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import { Menu } from 'antd';
+import { BarChartOutlined } from '@ant-design/icons';
+import CovidPage from './CovidPage.js';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+class App extends React.Component {
+  state = {
+    country: 'china',
+  };
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+  handleClick = e => {
+    console.log('click ', e);
+    this.setState({ country: e.key });
+  };
+
+  render() {
+    const { country } = this.state;
+    return (
+      <div>
+        <Menu onClick={this.handleClick} selectedKeys={ country } mode="horizontal">
+          <Menu.Item key="australia" icon={<BarChartOutlined />}>
+            Australia
+          </Menu.Item>
+          <Menu.Item key="china" icon={<BarChartOutlined />}>
+            China
+          </Menu.Item>
+        </Menu>
+        <CovidPage country={ country }/>
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<App />, document.getElementById('container'));
