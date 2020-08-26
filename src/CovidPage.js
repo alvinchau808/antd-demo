@@ -6,7 +6,7 @@ const CovidPage = (props) => {
   const [data, setData] = useState([]);
   useEffect(() => {
     asyncFetch();
-  }, []);
+  }, [country]);
   const asyncFetch = () => {
     fetch(`https://covid19.mathdro.id/api/countries/${ country }/confirmed`)
       .then(response => response.json())

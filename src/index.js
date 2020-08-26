@@ -5,10 +5,11 @@ import './index.css';
 import { Menu } from 'antd';
 import { BarChartOutlined } from '@ant-design/icons';
 import CovidPage from './CovidPage.js';
+import SearchBox from './SearchBox.js';
 
 class App extends React.Component {
   state = {
-    country: 'china',
+    country: 'australia',
   };
 
   handleClick = e => {
@@ -19,7 +20,7 @@ class App extends React.Component {
   render() {
     const { country } = this.state;
     return (
-      <div>
+      <div>        
         <Menu onClick={this.handleClick} selectedKeys={ country } mode="horizontal">
           <Menu.Item key="australia" icon={<BarChartOutlined />}>
             Australia
@@ -29,9 +30,11 @@ class App extends React.Component {
           </Menu.Item>
         </Menu>
         <CovidPage country={ country }/>
+        <SearchBox />
       </div>
     );
   }
+  
 }
 
 ReactDOM.render(<App />, document.getElementById('container'));
