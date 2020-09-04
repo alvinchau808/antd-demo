@@ -6,6 +6,7 @@ import { Menu } from 'antd';
 import { BarChartOutlined } from '@ant-design/icons';
 import CovidPage from './CovidPage.js';
 import SearchBox from './SearchBox.js';
+import CheckoutForm from './CheckoutForm';
 
 class App extends React.Component {
   state = {
@@ -31,6 +32,7 @@ class App extends React.Component {
         </Menu>
         <CovidPage country={ country }/>
         <SearchBox />
+        <CheckoutForm />
       </div>
     );
   }
