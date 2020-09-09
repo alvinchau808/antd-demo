@@ -11,8 +11,7 @@
     "places.js": "^1.19.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "^2.1.8",
-    "scriptjs": "^2.5.9"
+    "react-scripts": "^2.1.8"
   },
   "scripts": {
     "start": "react-scripts start",

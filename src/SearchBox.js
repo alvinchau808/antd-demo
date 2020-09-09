@@ -55,7 +55,6 @@ class SearchBox extends React.Component {
             </div>
             <input id="pac-input" type="text" placeholder="Enter a location" />
           </div>
-          
         );
     }
 }
